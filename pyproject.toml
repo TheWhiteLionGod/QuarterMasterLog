@@ -1,0 +1,20 @@
+[project]
+name = "quartermasterlog"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.1.2"
+]
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=8.0.0",
+]
+prod = [
+    "gunicorn>=26.2.0",
+]
+
+[tool.uv]
+link-mode = "symlink"
