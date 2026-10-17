@@ -11,6 +11,8 @@ dependencies = [
 [dependency-groups]
 dev = [
     "django-debug-toolbar>=8.0.0",
+    "django-stubs>=6.1.2",
+    "django-stubs-ext>=6.1.2",
 ]
 prod = [
     "gunicorn>=26.2.0",
@@ -18,3 +20,9 @@ prod = [
 
 [tool.uv]
 link-mode = "symlink"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "myproject.settings"
