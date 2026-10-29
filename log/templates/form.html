@@ -1,0 +1,11 @@
+{%extends "base.html"%}
+
+{% block title %} Index HTML {% endblock %}
+
+{% block content %}
+<form method="POST" action="#">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" name="submit" value="submit"></button>
+</form>
+{% endblock %}

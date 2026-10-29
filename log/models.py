@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
@@ -13,8 +14,26 @@ class CampSite(models.Model):
 class Equipment(models.Model):
     label = models.CharField(max_length=100)
 
+    @property
+    def real_instance(self):
+        if hasattr(self, '_real_instance_cache'):
+            return self._real_instance_cache
+
+        self._real_instance_cache = self
+        for subclass in self.__class__.__subclasses__():
+            attr_name = subclass.__name__.lower()
+            try:
+                self._real_instance_cache = getattr(self, attr_name)
+                break
+            except ObjectDoesNotExist:
+                continue
+
+        return self._real_instance_cache
+        
     def __str__(self) -> str:
-        return f"{self.__class__.__name__} {self.label}"
+        if type(self) is Equipment:
+            return str(self.real_instance)
+        return f"Equipment {self.label}"
 
 class EquipmentBin(Equipment):
     has_stove = models.BooleanField()
@@ -37,6 +56,7 @@ class EquipmentBin(Equipment):
 
     def __str__(self) -> str:
         return f"Equipment Bin {self.label}"
+
 class FoodBin(Equipment):
     def __str__(self) -> str:
         return f"Food Bin {self.label}"
