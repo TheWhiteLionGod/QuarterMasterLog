@@ -4,7 +4,6 @@ from typing import Type
 from .models import *
 from .forms import *
 
-# Create your views here.
 def index(response):
     return render(response, "index.html", {"campsites": CampSite.objects.all().order_by('-id')})
 
@@ -28,3 +27,7 @@ def form(response, type: str):
         return redirect('/')
     
     return render(response, "form.html", {"form": form})
+
+def camp(response, id: int):
+    camp = CampSite.objects.get(id=id)
+    return render(response, "camp.html", {"camp": camp})
