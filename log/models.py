@@ -75,4 +75,4 @@ class Assignment(models.Model):
     person = models.CharField(max_length=100)
 
     def __str__(self) -> str:
-        return f"{self.person} took {self.equipment} on {self.campsite}"
+        return f"{self.person} Took {self.equipment} On {self.campsite}"
