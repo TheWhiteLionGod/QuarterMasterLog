@@ -1,18 +1,18 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db import models
+from django.db.models import Model, Field, CharField, PositiveSmallIntegerField, BooleanField, ForeignKey, CASCADE, PROTECT
 
-class CampSite(models.Model):
-    name = models.CharField(max_length=100)
-    year = models.PositiveSmallIntegerField(
+class CampSite(Model):
+    name: Field[str, str] = CharField(max_length=100)
+    year: Field[int, int] = PositiveSmallIntegerField(
         validators=[MinValueValidator(2000), MaxValueValidator(2100)]
     )
 
     def __str__(self) -> str:
         return f"{self.name} {self.year}"
 
-class Equipment(models.Model):
-    label = models.CharField(max_length=100)
+class Equipment(Model):
+    label: Field[str, str] = CharField(max_length=100)
 
     @property
     def real_instance(self):
@@ -36,23 +36,23 @@ class Equipment(models.Model):
         return f"Equipment {self.label}"
 
 class EquipmentBin(Equipment):
-    has_stove = models.BooleanField()
-    has_cutting_board = models.BooleanField()
-    has_kitchen_knife = models.BooleanField()
-    mittens = models.PositiveSmallIntegerField(validators=[MaxValueValidator(9)])
-    has_solid_spatula = models.BooleanField()
-    has_slotted_spatula = models.BooleanField()
-    has_tongs = models.BooleanField()
-    has_solid_spoon = models.BooleanField()
-    has_slotted_spoon = models.BooleanField()
-    has_cooking_fork = models.BooleanField()
-    has_can_opener = models.BooleanField()
-    has_peeler = models.BooleanField()
-    has_wisk = models.BooleanField()
-    has_measuring_cup = models.BooleanField()
-    has_griddle = models.BooleanField()
-    has_strainer = models.BooleanField()
-    washing_bins = models.PositiveSmallIntegerField(validators=[MaxValueValidator(9)])
+    has_stove: Field[bool, bool] = BooleanField()
+    has_cutting_board: Field[bool, bool] = BooleanField()
+    has_kitchen_knife: Field[bool, bool] = BooleanField()
+    mittens: Field[int, int] = PositiveSmallIntegerField(validators=[MaxValueValidator(9)])
+    has_solid_spatula: Field[bool, bool] = BooleanField()
+    has_slotted_spatula: Field[bool, bool] = BooleanField()
+    has_tongs: Field[bool, bool] = BooleanField()
+    has_solid_spoon: Field[bool, bool] = BooleanField()
+    has_slotted_spoon: Field[bool, bool] = BooleanField()
+    has_cooking_fork: Field[bool, bool] = BooleanField()
+    has_can_opener: Field[bool, bool] = BooleanField()
+    has_peeler: Field[bool, bool] = BooleanField()
+    has_wisk: Field[bool, bool] = BooleanField()
+    has_measuring_cup: Field[bool, bool] = BooleanField()
+    has_griddle: Field[bool, bool] = BooleanField()
+    has_strainer: Field[bool, bool] = BooleanField()
+    washing_bins: Field[int, int] = PositiveSmallIntegerField(validators=[MaxValueValidator(9)])
 
     def __str__(self) -> str:
         return f"Equipment Bin {self.label}"
@@ -69,10 +69,10 @@ class WaterJug(Equipment):
     def __str__(self) -> str:
         return f"Water Jug {self.label}"
 
-class Assignment(models.Model):
-    campsite = models.ForeignKey(CampSite, on_delete=models.CASCADE, related_name='assignments')
-    equipment = models.ForeignKey(Equipment, on_delete=models.PROTECT, related_name='assignments')
-    person = models.CharField(max_length=100)
+class Assignment(Model):
+    campsite: Field[CampSite, CampSite] = ForeignKey(CampSite, on_delete=CASCADE, related_name='assignments')
+    equipment: Field[Equipment, Equipment] = ForeignKey(Equipment, on_delete=PROTECT, related_name='assignments')
+    person: Field[str, str] = CharField(max_length=100)
 
     def __str__(self) -> str:
         return f"{self.person} Took {self.equipment} On {self.campsite}"
