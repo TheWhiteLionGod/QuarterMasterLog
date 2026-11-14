@@ -3,9 +3,9 @@ from django.forms import ModelForm
 from django.db.models import Model
 from django.http import HttpRequest, HttpResponse
 from typing import Type
+from uuid import UUID
 from .models import *
 from .forms import *
-from uuid import UUID
 
 def index(response: HttpRequest) -> HttpResponse:
     return render(response, "index.html", {

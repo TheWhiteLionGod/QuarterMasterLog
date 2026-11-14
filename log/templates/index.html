@@ -5,7 +5,8 @@
 {% block content %}
 <div class="container px-4 py-5" id="custom-cards">
     <h2 class="pb-2 border-bottom">Campsites</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
+    <a href="/form/campsite" class="btn btn-primary">Create New Campsite</a>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for camp in campsites %}
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://t4.ftcdn.net/jpg/01/41/04/89/360_F_141048901_uLh0JpYMLv35L095YnQj1uzu3a8FPOE9.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -17,11 +18,10 @@
             </div>
         {% endfor %}
     </div>
-</div>
 
-<div class="container px-4 py-5" id="custom-cards">
     <h2 class="pb-2 border-bottom">Equipment Bins</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
+    <a href="/form/equipmentbin" class="btn btn-primary">Create New Equipment Bin</a>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for bin in equipmentbins %}
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://i.redd.it/gglwomdait8b1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -33,11 +33,10 @@
             </div>
         {% endfor %}
     </div>
-</div>
 
-<div class="container px-4 py-5" id="custom-cards">
     <h2 class="pb-2 border-bottom">Food Bins</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
+    <a href="/form/foodbin" class="btn btn-primary">Create New Foodbin</a>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for bin in foodbins %}
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://2477-cdn.dib-moce-cdn.info/Data/ItemImage-620540-4g2qpvxb493tcm7jg4txzpp.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -49,11 +48,10 @@
             </div>
         {% endfor %}
     </div>
-</div>
-
-<div class="container px-4 py-5" id="custom-cards">
+    
     <h2 class="pb-2 border-bottom">Coolers</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
+    <a href="/form/cooler" class="btn btn-primary">Create New Cooler</a>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for cooler in coolers %}
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://images.thdstatic.com/productImages/67d56c05-7e0b-4f01-b4eb-95aad16dcb34/svn/gray-coleman-chest-coolers-3000006492-64_600.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -65,11 +63,10 @@
             </div>
         {% endfor %}
     </div>
-</div>
-
-<div class="container px-4 py-5" id="custom-cards">
+    
     <h2 class="pb-2 border-bottom">Water Jugs</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
+    <a href="/form/waterjug" class="btn btn-primary">Create New Water Jug</a>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for jug in waterjugs %}
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://k9-kennelstore.com/pub/media/catalog/product/cache/c7b67f1ce99d1caa405d0fe7ed968970/i/m/image20260206082852.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
