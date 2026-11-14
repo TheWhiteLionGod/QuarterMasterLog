@@ -1,8 +1,10 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import Model, Field, CharField, PositiveSmallIntegerField, BooleanField, ForeignKey, CASCADE, PROTECT
+from django.db.models import Model, Field, CharField, PositiveSmallIntegerField, BooleanField, UUIDField, ForeignKey, CASCADE, PROTECT
+import uuid
 
 class CampSite(Model):
+    pubkey: Field[uuid.UUID, uuid.UUID] = UUIDField(default=uuid.uuid4, unique=True, editable=False, db_index=True)
     name: Field[str, str] = CharField(max_length=100)
     year: Field[int, int] = PositiveSmallIntegerField(
         validators=[MinValueValidator(2000), MaxValueValidator(2100)]
@@ -12,6 +14,7 @@ class CampSite(Model):
         return f"{self.name} {self.year}"
 
 class Equipment(Model):
+    pubkey: Field[uuid.UUID, uuid.UUID] = UUIDField(default=uuid.uuid4, unique=True, editable=False, db_index=True)
     label: Field[str, str] = CharField(max_length=100)
 
     @property
@@ -70,6 +73,7 @@ class WaterJug(Equipment):
         return f"Water Jug {self.label}"
 
 class Assignment(Model):
+    pubkey: Field[uuid.UUID, uuid.UUID] = UUIDField(default=uuid.uuid4, unique=True, editable=False, db_index=True)
     campsite: Field[CampSite, CampSite] = ForeignKey(CampSite, on_delete=CASCADE, related_name='assignments')
     equipment: Field[Equipment, Equipment] = ForeignKey(Equipment, on_delete=PROTECT, related_name='assignments')
     person: Field[str, str] = CharField(max_length=100)

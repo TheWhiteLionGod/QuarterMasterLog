@@ -5,6 +5,7 @@ from django.http import HttpRequest, HttpResponse
 from typing import Type
 from .models import *
 from .forms import *
+from uuid import UUID
 
 def index(response: HttpRequest) -> HttpResponse:
     return render(response, "index.html", {
@@ -14,6 +15,10 @@ def index(response: HttpRequest) -> HttpResponse:
         "coolers": Cooler.objects.all(),
         "waterjugs": WaterJug.objects.all()
     })
+
+def camp(response: HttpRequest, pubkey: UUID) -> HttpResponse:
+    camp = CampSite.objects.get(pubkey=pubkey)
+    return render(response, "camp.html", {"camp": camp})
 
 form_types: dict[str, Type[ModelForm[Any]]] = {
     "campsite": CampSiteForm,
@@ -45,7 +50,7 @@ def form(response: HttpRequest, type: str) -> HttpResponse:
     
     return render(response, "form.html", {"form": form})
 
-def edit(response: HttpRequest, type: str, id: int) -> HttpResponse:
+def edit(response: HttpRequest, type: str, pubkey: UUID) -> HttpResponse:
     model_cls = cls_types.get(type)
     if model_cls is None:
         return redirect('/')
@@ -55,7 +60,7 @@ def edit(response: HttpRequest, type: str, id: int) -> HttpResponse:
         return redirect('/')
     
     try:
-        model = model_cls.objects.get(id=id)
+        model = model_cls.objects.get(pubkey=pubkey)
     except model_cls.DoesNotExist:
         return redirect('/')
     
@@ -68,7 +73,3 @@ def edit(response: HttpRequest, type: str, id: int) -> HttpResponse:
         form = form_cls(instance=model)
 
     return render(response, "form.html", {"form": form})
-
-def camp(response: HttpRequest, id: int) -> HttpResponse:
-    camp = CampSite.objects.get(id=id)
-    return render(response, "camp.html", {"camp": camp})
