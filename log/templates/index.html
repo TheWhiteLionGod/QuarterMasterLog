@@ -8,10 +8,10 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
         {% for camp in campsites %}
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://t4.ftcdn.net/jpg/01/41/04/89/360_F_141048901_uLh0JpYMLv35L095YnQj1uzu3a8FPOE9.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 fg-white text-shadow-1">
                         <a href="/camp/{{ camp.pubkey }}" class="stretched-link"></a>
-                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold">{{ camp.name }} {{ camp.year }}</h3>
+                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold text-center text-white">{{ camp.name }} {{ camp.year }}</h3>
                     </div>
                 </div>
             </div>
@@ -24,10 +24,10 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
         {% for bin in equipmentbins %}
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://i.redd.it/gglwomdait8b1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 fg-white text-shadow-1">
                         <a href="/edit/equipmentbin/{{ bin.pubkey }}" class="stretched-link"></a>
-                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold">{{ bin }}</h3>
+                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold text-center text-white">{{ bin }}</h3>
                     </div>
                 </div>
             </div>
@@ -40,10 +40,10 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
         {% for bin in foodbins %}
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 fg-white text-shadow-1">
+                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://2477-cdn.dib-moce-cdn.info/Data/ItemImage-620540-4g2qpvxb493tcm7jg4txzpp.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                    <div class="d-flex flex-column h-100 p-5 fg-white text-shadow-1">
                         <a href="/edit/foodbin/{{ bin.pubkey }}" class="stretched-link"></a>
-                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold">{{ bin }}</h3>
+                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold text-center text-white">{{ bin }}</h3>
                     </div>
                 </div>
             </div>
@@ -56,10 +56,10 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
         {% for cooler in coolers %}
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 fg-white text-shadow-1">
+                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://images.thdstatic.com/productImages/67d56c05-7e0b-4f01-b4eb-95aad16dcb34/svn/gray-coleman-chest-coolers-3000006492-64_600.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                    <div class="d-flex flex-column h-100 p-5 fg-white text-shadow-1">
                         <a href="/edit/cooler/{{ cooler.pubkey }}" class="stretched-link"></a>
-                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold">{{ cooler }}</h3>
+                        <h3 class="pt-5 my-5 fs-3xl lh-1 fw-bold text-center text-white">{{ cooler }}</h3>
                     </div>
                 </div>
             </div>
@@ -72,10 +72,10 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
         {% for jug in waterjugs %}
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+                <div class="card card-cover h-100 overflow-hidden rounded-4 shadow-lg" style="background-image: url('https://k9-kennelstore.com/pub/media/catalog/product/cache/c7b67f1ce99d1caa405d0fe7ed968970/i/m/image20260206082852.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 fg-white text-shadow-1">
                         <a href="/edit/waterjug/{{ jug.pubkey }}" class="stretched-link"></a>
-                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold">{{ jug }}</h3>
+                        <h3 class="pt-5 mt-5 mb-4 fs-3xl lh-1 fw-bold text-center text-white">{{ jug }}</h3>
                     </div>
                 </div>
             </div>

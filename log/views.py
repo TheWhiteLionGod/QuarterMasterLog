@@ -48,7 +48,7 @@ def form(response: HttpRequest, type: str) -> HttpResponse:
         form.save()
         return redirect('/')
     
-    return render(response, "form.html", {"form": form})
+    return render(response, "form.html", {"form": form, "edit": False})
 
 def edit(response: HttpRequest, type: str, pubkey: UUID) -> HttpResponse:
     model_cls = cls_types.get(type)
@@ -65,6 +65,10 @@ def edit(response: HttpRequest, type: str, pubkey: UUID) -> HttpResponse:
         return redirect('/')
     
     if response.method == "POST":
+        if "delete" in response.POST:
+            model.delete()
+            return redirect('/')
+
         form = form_cls(response.POST, instance=model)
         if form.is_valid():
             form.save()
@@ -72,4 +76,4 @@ def edit(response: HttpRequest, type: str, pubkey: UUID) -> HttpResponse:
     else: 
         form = form_cls(instance=model)
 
-    return render(response, "form.html", {"form": form})
+    return render(response, "form.html", {"form": form, "edit": True})
