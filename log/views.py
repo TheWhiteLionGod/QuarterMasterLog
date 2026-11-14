@@ -7,7 +7,13 @@ from .models import *
 from .forms import *
 
 def index(response: HttpRequest) -> HttpResponse:
-    return render(response, "index.html", {"campsites": CampSite.objects.all().order_by('-id')})
+    return render(response, "index.html", {
+        "campsites": CampSite.objects.all().order_by('-id'), 
+        "equipmentbins": EquipmentBin.objects.all(),
+        "foodbins": FoodBin.objects.all(),
+        "coolers": Cooler.objects.all(),
+        "waterjugs": WaterJug.objects.all()
+    })
 
 form_types: dict[str, Type[ModelForm[Any]]] = {
     "campsite": CampSiteForm,
