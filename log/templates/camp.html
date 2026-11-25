@@ -4,8 +4,11 @@
 
 {% block content %}
 <div class="container px-4 py-5" id="custom-cards">
-    <h2 class="pb-2 border-bottom">{{ camp }}</h2>
-    <a href="/form/assignment" class="btn btn-primary">Create New Assignment</a>
+    <h2 class="pb-2 border-bottom">{{ camp }}
+        {% if user.is_authenticated %}
+            <a href="/form/assignment" class="btn btn-primary">Create New Assignment</a>
+        {% endif %}
+    </h2>
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 pt-4 pb-5">
         {% for assignment in camp.assignments.all %}
             <div class="col">

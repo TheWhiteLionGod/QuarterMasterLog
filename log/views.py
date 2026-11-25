@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.forms import ModelForm
 from django.db.models import Model
 from django.http import HttpRequest, HttpResponse
+from django.contrib.auth import logout
 from typing import Type
 from uuid import UUID
 from .models import *
@@ -77,3 +78,7 @@ def edit(response: HttpRequest, type: str, pubkey: UUID) -> HttpResponse:
         form = form_cls(instance=model)
 
     return render(response, "form.html", {"form": form, "edit": True})
+
+def custom_logout(request: HttpRequest) -> HttpResponse:
+    logout(request)
+    return redirect('/')

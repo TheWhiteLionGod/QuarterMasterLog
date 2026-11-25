@@ -4,8 +4,12 @@
 
 {% block content %}
 <div class="container px-4 py-5" id="custom-cards">
-    <h2 class="pb-2 border-bottom">Campsites</h2>
-    <a href="/form/campsite" class="btn btn-primary">Create New Campsite</a>
+    <h2 class="pb-2 border-bottom" id="campsites">Campsites 
+        {% if user.is_authenticated %}
+            <a href="/form/campsite" class="btn btn-primary">Create New Campsite</a>
+        {% endif %}
+    </h2>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for camp in campsites %}
             <div class="col">
@@ -19,8 +23,12 @@
         {% endfor %}
     </div>
 
-    <h2 class="pb-2 border-bottom">Equipment Bins</h2>
-    <a href="/form/equipmentbin" class="btn btn-primary">Create New Equipment Bin</a>
+    <h2 class="pb-2 border-bottom" id="equipmentbins">Equipment Bins
+        {% if user.is_authenticated %}
+            <a href="/form/equipmentbin" class="btn btn-primary">Create New Equipment Bin</a>
+        {% endif %}
+    </h2>
+    
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for bin in equipmentbins %}
             <div class="col">
@@ -34,8 +42,12 @@
         {% endfor %}
     </div>
 
-    <h2 class="pb-2 border-bottom">Food Bins</h2>
-    <a href="/form/foodbin" class="btn btn-primary">Create New Foodbin</a>
+    <h2 class="pb-2 border-bottom" id="foodbins">Food Bins
+        {% if user.is_authenticated %}
+            <a href="/form/foodbin" class="btn btn-primary">Create New Foodbin</a>
+        {% endif %}
+    </h2>
+   
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for bin in foodbins %}
             <div class="col">
@@ -49,8 +61,12 @@
         {% endfor %}
     </div>
     
-    <h2 class="pb-2 border-bottom">Coolers</h2>
-    <a href="/form/cooler" class="btn btn-primary">Create New Cooler</a>
+    <h2 class="pb-2 border-bottom" id="coolers">Coolers
+        {% if user.is_authenticated %}
+            <a href="/form/cooler" class="btn btn-primary">Create New Cooler</a>
+        {% endif %}
+    </h2>
+    
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for cooler in coolers %}
             <div class="col">
@@ -64,8 +80,12 @@
         {% endfor %}
     </div>
     
-    <h2 class="pb-2 border-bottom">Water Jugs</h2>
-    <a href="/form/waterjug" class="btn btn-primary">Create New Water Jug</a>
+    <h2 class="pb-2 border-bottom" id="jugs">Water Jugs
+        {% if user.is_authenticated %}
+            <a href="/form/waterjug" class="btn btn-primary">Create New Water Jug</a>
+        {% endif %}
+    </h2>
+    
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 pt-4 pb-5">
         {% for jug in waterjugs %}
             <div class="col">

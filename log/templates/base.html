@@ -7,6 +7,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
+    <div class="container-fluid">
+        <header class="d-flex flex-wrap align-items-center justify-content-center md:justify-content-between py-3 mb-4 border-bottom">
+            <ul class="nav col-9 md:col-auto mb-2 justify-content-center md:mb-0">
+                <li><a href="/" class="nav-link px-2">Home</a></li>
+                <li><a href="/#campsites" class="nav-link px-2">Campsites</a></li>
+                <li><a href="/#equipmentbins" class="nav-link px-2">Equipment Bins</a></li>
+                <li><a href="/#foodbins" class="nav-link px-2">Food Bins</a></li>
+                <li><a href="/#coolers" class="nav-link px-2">Coolers</a></li>
+                <li><a href="/#jugs" class="nav-link px-2">Water Jugs</a></li>
+            </ul>
+            <div class="md:col-3 text-end">
+                {% if user.is_authenticated %}
+                    <a href="/logout" class="btn btn-primary me-2">Log Out</a>
+                {% else %}
+                    <a href="/login" class="btn btn-primary me-2">Log In</a>
+                {% endif %}
+            </div>
+        </header>
+    </div>
+
     {% block content %}
     {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
