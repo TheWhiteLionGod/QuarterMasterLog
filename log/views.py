@@ -3,10 +3,18 @@ from django.forms import ModelForm
 from django.db.models import Model
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import logout
-from typing import Type
+from typing import Callable, Any, Type, Concatenate
 from uuid import UUID
 from .models import *
 from .forms import *
+
+type ViewFunctions[**P] = Callable[Concatenate[HttpRequest, P], HttpResponse]
+def logged_in[**P](func: ViewFunctions[P]) -> ViewFunctions[P]:
+    def wrapper(response: HttpRequest, *args: P.args, **kwargs: P.kwargs) -> HttpResponse:
+        if response.user.is_authenticated:
+            return func(response, *args, **kwargs)
+        return redirect('/')
+    return wrapper
 
 def index(response: HttpRequest) -> HttpResponse:
     return render(response, "index.html", {
@@ -39,6 +47,7 @@ cls_types: dict[str, Type[Model]] = {
     "assignment": Assignment
 }
 
+@logged_in
 def form(response: HttpRequest, type: str) -> HttpResponse:
     form_cls = form_types.get(type)
     if form_cls is None:
@@ -51,6 +60,7 @@ def form(response: HttpRequest, type: str) -> HttpResponse:
     
     return render(response, "form.html", {"form": form, "edit": False})
 
+@logged_in
 def edit(response: HttpRequest, type: str, pubkey: UUID) -> HttpResponse:
     model_cls = cls_types.get(type)
     if model_cls is None:
@@ -79,6 +89,7 @@ def edit(response: HttpRequest, type: str, pubkey: UUID) -> HttpResponse:
 
     return render(response, "form.html", {"form": form, "edit": True})
 
+@logged_in
 def custom_logout(request: HttpRequest) -> HttpResponse:
     logout(request)
     return redirect('/')
