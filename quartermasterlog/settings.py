@@ -59,6 +59,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    INTERNAL_IPS = ["127.0.0.1"]
+
 ROOT_URLCONF = 'quartermasterlog.urls'
 
 TEMPLATES = [
@@ -96,6 +101,7 @@ DATABASES = {
         'USER': os.environ.get("DB_USER"),
         'PORT': os.environ.get("DB_PORT"),
         'PASSWORD': os.environ.get("DB_PASSWORD"),
+        'CONN_MAX_AGE': 600
     }
 }
 

@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import ModelForm
-from django.db.models import Model
+from django.db.models import Model, Prefetch
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import logout
 from typing import Callable, Any, Type, Concatenate
@@ -17,16 +17,39 @@ def logged_in[**P](func: ViewFunctions[P]) -> ViewFunctions[P]:
     return wrapper
 
 def index(response: HttpRequest) -> HttpResponse:
+    equipment = Equipment.objects.select_related(
+        "equipmentbin", "foodbin", "cooler", "waterjug"
+    )
+
+    equipmentbins = [e for e in equipment if hasattr(e, "equipmentbin")]
+    foodbins = [e for e in equipment if hasattr(e, "foodbin")]
+    coolers = [e for e in equipment if hasattr(e, "cooler")]
+    waterjugs = [e for e in equipment if hasattr(e, "waterjug")]
+
     return render(response, "index.html", {
-        "campsites": CampSite.objects.all().order_by('-id'), 
-        "equipmentbins": EquipmentBin.objects.all(),
-        "foodbins": FoodBin.objects.all(),
-        "coolers": Cooler.objects.all(),
-        "waterjugs": WaterJug.objects.all()
+        "campsites": CampSite.objects.all().order_by("-id"),
+        "equipmentbins": equipmentbins,
+        "foodbins": foodbins,
+        "coolers": coolers,
+        "waterjugs": waterjugs,
     })
 
 def camp(response: HttpRequest, pubkey: UUID) -> HttpResponse:
-    camp = CampSite.objects.get(pubkey=pubkey)
+    assignments_qs = Assignment.objects.select_related(
+        "equipment",
+        "equipment__equipmentbin",
+        "equipment__foodbin",
+        "equipment__cooler",
+        "equipment__waterjug",
+    )
+
+    camp = get_object_or_404(
+        CampSite.objects.prefetch_related(
+            Prefetch("assignments", queryset=assignments_qs)
+        ),
+        pubkey=pubkey,
+    )
+
     return render(response, "camp.html", {"camp": camp})
 
 form_types: dict[str, Type[ModelForm[Any]]] = {
