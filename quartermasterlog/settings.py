@@ -30,10 +30,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+ep7e8le(!9oi(*p)r@0!fjdx@rk#so(@30d!=_$=p0mc&4hza'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["quartermasterlog.onrender.com"]
-CSRF_TRUSTED_ORIGINS = ["https://quartermasterlog.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "quartermasterlog.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "https://quartermasterlog.onrender.com"]
 
 
 # Application definition

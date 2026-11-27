@@ -52,6 +52,14 @@ def camp(response: HttpRequest, pubkey: UUID) -> HttpResponse:
 
     return render(response, "camp.html", {"camp": camp})
 
+def equipment(response: HttpRequest, pubkey: UUID) -> HttpResponse:
+    try:
+        equipment = Equipment.objects.get(pubkey=pubkey)
+    except Equipment.DoesNotExist:
+        return redirect('/')
+
+    return render(response, 'equipment.html', {'equipment': equipment})
+
 form_types: dict[str, Type[ModelForm[Any]]] = {
     "campsite": CampSiteForm,
     "equipmentbin": EquipmentBinForm,

@@ -32,6 +32,14 @@ class Equipment(Model):
                 continue
 
         return self._real_instance_cache
+
+    @property
+    def model_name(self):
+        return self.real_instance._meta.model_name
+
+    @property
+    def fields(self):
+        return [(f.verbose_name, getattr(self.real_instance, f.name)) for f in self.real_instance._meta.fields]
         
     def __str__(self) -> str:
         if type(self) is Equipment:
